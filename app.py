@@ -49,4 +49,10 @@ def home():
     return "portfolio likes and dislikes api"
 
 if __name__ == '__main__':
+    # replace the database if it exist
+    db = sqlite3.connect("database.sqlite")
+    cursor = db.cursor()
+    cursor.execute("DROP TABLE IF EXISTS likesCounter")
+    cursor.execute("CREATE TABLE likesCounter (portfolio_id INTEGER PRIMARY KEY, likes INTEGER DEFAULT 0, dislikes INTEGER DEFAULT 0)")
+    db.commit()
     app.run()
