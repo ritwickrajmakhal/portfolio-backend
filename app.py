@@ -44,6 +44,9 @@ def get_dislikes(portfolio_id):
     else:
         return str(data[0])
     
+@app.route("/")
+def home():
+    return "portfolio likes and dislikes api"
 
 if __name__ == '__main__':
     app.run()
