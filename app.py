@@ -3,7 +3,7 @@ import sqlite3
 from flask_cors import CORS  # Import Flask-CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for your app
+CORS(app, origins=["http://localhost:3000", "https://ritwickrajmakhal.github.io"])  # Enable CORS for your app
 
 @app.route('/api/likes/<int:portfolio_id>', methods=['GET', 'POST'])
 def get_likes(portfolio_id):
