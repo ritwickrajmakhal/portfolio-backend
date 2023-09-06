@@ -23,28 +23,11 @@ def get_likes(portfolio_id):
         cursor.execute("INSERT INTO likesCounter (portfolio_id, likes) VALUES (?, 1) ON CONFLICT(portfolio_id) DO UPDATE SET likes = likes + 1", (portfolio_id,))
         db.commit()
         return "success"
-    
-@app.route('/api/dislikes/<int:portfolio_id>', methods=['GET', 'POST'])
-def get_dislikes(portfolio_id):
-    db = sqlite3.connect("database.sqlite")
-    cursor = db.cursor()
-    if request.method == 'GET':
-        # get the dislikes for the portfolio_id
-        cursor.execute("SELECT dislikes FROM likesCounter WHERE portfolio_id = ?", (portfolio_id,))
-        data = cursor.fetchone()
-        if data is None:
-            return "0"
-        else:
-            return str(data[0])
-    else:
-        # increment the dislikes by 1 if the portfolio_id exists else create a new entry
-        cursor.execute("INSERT INTO likesCounter (portfolio_id, dislikes) VALUES (?, 1) ON CONFLICT(portfolio_id) DO UPDATE SET dislikes = dislikes + 1", (portfolio_id,))
-        db.commit()
-        return "success"
-    
-@app.route("/")
-def home():
-    return "portfolio likes and dislikes api"
 
 if __name__ == '__main__':
+    # create likesCounter table if it doesn't exist
+    db = sqlite3.connect("database.sqlite")
+    cursor = db.cursor()
+    cursor.execute("CREATE TABLE IF NOT EXISTS likesCounter (portfolio_id INTEGER PRIMARY KEY, likes INTEGER)")
+    db.commit()
     app.run()
