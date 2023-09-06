@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'portfolio-like-counter'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_27F4D418FD72458CAD63FEB5CCF48E48 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_37706EAEBB8846E9A1AFF4AFD7591EF6 }}
