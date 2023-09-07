@@ -25,9 +25,4 @@ def get_likes(portfolio_id):
         return "success"
 
 if __name__ == '__main__':
-    # create likesCounter table if it doesn't exist
-    db = sqlite3.connect("database.sqlite")
-    cursor = db.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS likesCounter (portfolio_id INTEGER PRIMARY KEY, likes INTEGER)")
-    db.commit()
     app.run()
