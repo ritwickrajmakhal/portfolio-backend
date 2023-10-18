@@ -36,9 +36,10 @@ def upload_file(db, container_client, blob_client):
     db.close()
 
 
-@app.route('/api/likes/<int:portfolio_id>', methods=['GET', 'POST'])
-def get_likes(portfolio_id):
+@app.route('/api/likes', methods=['GET', 'POST'])
+def get_likes():
     cursor, db, container_client, blob_client = download_file()
+    portfolio_id = request.args.get('portfolioid')
     if request.method == 'GET':
         # get the likes for the portfolio_id
         cursor.execute(
