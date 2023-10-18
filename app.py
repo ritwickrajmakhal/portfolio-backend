@@ -6,8 +6,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 
 app = Flask(__name__)
 # Enable CORS for your app
-CORS(app, origins=["http://localhost:3000",
-     "https://ritwickrajmakhal.github.io"])
+CORS(app, origins=["https://ritwickrajmakhal.github.io"])
 
 
 def download_file():
